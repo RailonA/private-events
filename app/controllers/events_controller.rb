@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :require_host!, except: [:index, :show, :new, :create]
   # GET /events or /events.json
   def index
     @events = Event.all
@@ -21,7 +22,7 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = Event.new(event_params)
+    @event =current_user.event.build(event_params)
 
     respond_to do |format|
       if @event.save
@@ -64,6 +65,13 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:event, :date, :location, :description)
+      params.require(:event).permit(:name, :date, :location, :description)
+    end
+
+    def require_host!
+      unless current_user.try(:id) == @event.host_id
+        flash[:alert] = 'You are not authorized to edit this event!'
+        redirect_to root_url
+      end
     end
 end
