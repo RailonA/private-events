@@ -17,7 +17,8 @@ ActiveRecord::Schema.define(version: 2021_03_26_222408) do
     t.datetime "date"
     t.string "location"
     t.text "description"
-    t.integer "user_id", null: false
+    t.integer "creator_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_events_on_user_id"

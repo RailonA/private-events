@@ -9,6 +9,11 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    if params[:id]
+      @user = User.find(params[:id])
+    else
+      @user = current_user
+    end
   end
 
   # GET /users/new
@@ -26,7 +31,7 @@ class UsersController < ApplicationController
    
     respond_to do |format|
       if @users.save
-        cookies[:current_user_id] = user.id  
+        cookies[:current_user_id] = user.creator_id 
         format.html { redirect_to @users, notice: "users was successfully created." }
         format.json { render :show, status: :created, location: @users }
       else
@@ -64,8 +69,5 @@ class UsersController < ApplicationController
       @users = users.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-    def users_params
-      params.require(:users).permit(:usersname, :date, :location, :description)
-    end
+
 end
