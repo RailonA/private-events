@@ -23,9 +23,10 @@ class UsersController < ApplicationController
   # POST /users or /users.json
   def create
     @users = users.new(users_params)
-
+   
     respond_to do |format|
       if @users.save
+        cookies[:current_user_id] = user.id  
         format.html { redirect_to @users, notice: "users was successfully created." }
         format.json { render :show, status: :created, location: @users }
       else
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def users_params
-      params.require(:users).permit(:users_name, :date, :location, :description, :user_id)
+      params.require(:users).permit(:usersname, :date, :location, :description, :user_id)
     end
 end
