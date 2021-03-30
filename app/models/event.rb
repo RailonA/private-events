@@ -4,5 +4,5 @@ class Event < ApplicationRecord
 
     has_many :invitation,
     class_name: "Invitation",
-    foreign_key: :attended_event
+    foreign_key: :attended_event_id
 end

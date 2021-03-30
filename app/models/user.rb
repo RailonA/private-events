@@ -10,6 +10,6 @@ class User < ApplicationRecord
     
         has_many :invitation,
         class_name: "Invitation",
-        foreign_key: :attendee
+        foreign_key: :attendee__id
 
 end
