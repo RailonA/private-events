@@ -1,8 +1,21 @@
 class InvitationsController < ApplicationController
 
-    private
+    def index
+        @invitations = Invitation.all
 
-    def invitation_params
-      params.require(:invitation).permit(:attendee__id, :attended_event_id )
     end
+
+    def new
+    
+    end
+
+    def show
+        @invitations = Event.find(params[:id])
+
+    end
+
+    def create
+    
+    end
+
 end
