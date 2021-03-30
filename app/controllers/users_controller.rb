@@ -1,42 +1,27 @@
 class UsersController < ApplicationController
-  before_action :set_users, only: %i[ show edit update destroy ]
-  before_action  :authenticate_user!, except: [:index, :show]
+  
 
-  # GET /users or /users.json
   def index
-    @users = users.all.order("created_at DESC")
-    @users = users.new  end
-
-  # GET /users/1 or /users/1.json
-  def show
-    if params[:id]
-      @user = User.find(params[:id])
-    else
-      @user = current_user
-    end
+    @users = User.all.order('created_at DESC')
+    @user = User.new
   end
 
   # GET /users/new
   def new
-    @users = users.new
+    @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users or /users.json
+  # User /users or /users.json
   def create
-    @users = users.new(users_params)
-   
+    @user = current_user.users.build(User_params)
+
     respond_to do |format|
-      if @users.save
-        cookies[:current_user_id] = user.creator_id 
-        format.html { redirect_to @users, notice: "users was successfully created." }
-        format.json { render :show, status: :created, location: @users }
+      if @user.save
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @users.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,30 +29,34 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @users.update(users_params)
-        format.html { redirect_to @users, notice: "users was successfully updated." }
-        format.json { render :show, status: :ok, location: @users }
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @users.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /users/1 or /users/1.json
   def destroy
-    @users.destroy
+    @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "users was successfully destroyed." }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_users
-      @users = users.find(params[:id])
-    end
 
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end
