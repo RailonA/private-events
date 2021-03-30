@@ -6,6 +6,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show
+    @user = User.find_by(creator_id)
+  end
+
   # GET /users/new
   def new
     @user = User.new
