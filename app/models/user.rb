@@ -7,7 +7,9 @@ class User < ApplicationRecord
          has_many :events,
          class_name: "Event",
          foreign_key: :creator_id
-
-        
+    
+        has_many :invitation,
+        class_name: "Invitation",
+        foreign_key: :attendee
 
 end
