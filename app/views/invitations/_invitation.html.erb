@@ -1,0 +1,31 @@
+<div class='invitation <%= 'past' unless upcoming %>'>
+  <div class='invitation-name'><%= link_to invitation.event.name, event_path(invitation.event) %></div>
+  <div class='invitation-date'><%= invitation.event.date_only %></div>
+  <div class='rsvp-actions'>
+    <% if upcoming %>
+      <% if invitation.rsvp == 'ACCEPTED' %>
+        <%= button_to 'Attending', pend_invitation_path(invitation), class: 'current-status rsvp' %>
+        <%= button_to 'Declined', decline_invitation_path(invitation), class: 'rsvp' %>
+      <% elsif invitation.rsvp == 'DECLINED' %>
+        <%= button_to 'Attending', accept_invitation_path(invitation), class: 'rsvp' %>
+        <%= button_to 'Declined', pend_invitation_path(invitation), class: 'current-status rsvp' %>
+      <% else %>
+        <%= button_to 'Attending', accept_invitation_path(invitation), class: 'rsvp' %>
+        <%= button_to 'Declined', decline_invitation_path(invitation), class: 'rsvp' %>
+      <% end %>
+    <% else %>
+      <% if invitation.rsvp == 'ACCEPTED' %>
+        <div class='past-status past-action'>Attended</div>
+        <div class='past-action'>Declined</div>
+      <% elsif invitation.rsvp == 'DECLINED' %>
+        <div class='past-action'>Attended</div>
+        <div class='past-status past-action'>Declined</div>
+      <% else %>
+        <div class='past-action'>Attended</div>
+        <div class='past-action'>Declined</div>
+      <% end %>
+    <% end %>
+  </div>
+
+
+</div>

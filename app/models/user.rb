@@ -10,6 +10,15 @@ class User < ApplicationRecord
     
         has_many :invitation,
         class_name: "Invitation",
-        foreign_key: :attendee__id
+        foreign_key: :attendee_id
+
+        has_many :confirmations,
+        -> { where rsvp: 'ACCEPTED' },
+        class_name: :Invitation,
+        foreign_key: :attendee_id
+        
+        has_many :commitments,
+        through: :confirmations,
+        source: :event
 
 end

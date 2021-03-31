@@ -1,0 +1,19 @@
+<h4><%= @event.name %></h4>
+
+<p>You're almost done! Now it's time to invite some guests!</p>
+
+
+<%= form_with(url: event_invitations_path(@event), local: true) do |f| %>
+  <%= hidden_field_tag(:event_id, @event.id) %>
+  <% User.all.each do |user| %>
+    <div class='checkbox'>
+      <%= f.check_box("recipient[#{user.id}]") %>
+      <%= user.username %>
+    </div>
+  <% end %>
+  <br>
+  <%= submit_tag('Invite Guests!', class: 'important-button') %>
+<% end %>
+
+<br>
+<%= link_to 'Now now', profile_path, class: 'end-link' %>
