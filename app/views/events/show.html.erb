@@ -34,7 +34,7 @@
   <% if current_user.try(:id) == @event.creator_id %>
     <div>
       <%= link_to 'Edit', edit_event_path(@event) %> |
-      <%= link_to 'Update invitation', edit_invitation_path(@event) %> |
+      <%= link_to 'Update invitation', edit_event_path(@event) %> |
       <%= link_to 'Delete Event', event_path(@event), method: :delete, data: { confirm: 'Are you sure?'} %>
     </div>
   <% end %>

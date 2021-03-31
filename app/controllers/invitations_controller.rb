@@ -1,12 +1,15 @@
 class InvitationsController < ApplicationController
-
-before_action :authenticate_user!
+  before_action :authenticate_user!
 
   before_action :set_event, only: [:new, :create, :edit, :update]
-  before_action :require_host!, only: [:new, :create, :edit, :update]
+  before_action :require_user!, only: [:new, :create, :edit, :update]
 
   before_action :set_invitation, only: [:accept, :pend, :decline]
   before_action :require_recipient!, only: [:accept, :pend, :decline]
+
+  def index
+    
+  end
 
   def new
     render :new
@@ -77,8 +80,8 @@ before_action :authenticate_user!
     @event = Event.find(params[:event_id])
   end
 
-  def require_host!
-    unless current_user.try(:id) == @event.host_id
+  def require_user!
+    unless current_user.try(:id) == @event.user_id
       flash[:alert] = 'You are not authorized to edit invitations for this event!'
       redirect_to root_url
     end
@@ -89,7 +92,5 @@ before_action :authenticate_user!
       flash[:alert] = 'You are not authorized to respond to this invitation!'
       redirect_to root_url
     end
-
-end
-
+  end
 end
