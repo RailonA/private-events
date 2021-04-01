@@ -68,32 +68,32 @@ class InvitationsController < ApplicationController
     redirect_to event_url(@event)
   end
 
-  def accept
-    @invitation.update(rsvp: 'ACCEPTED')
-    redirect_to profile_path(anchor: 'invitations')
-  end
+  # def accept
+  #   @invitation.update(rsvp: 'ACCEPTED')
+  #   redirect_to profile_path(anchor: 'invitations')
+  # end
 
-  def pend
-    @invitation.update(rsvp: 'PENDING')
-    redirect_to profile_path(anchor: 'invitations')
-  end
+  # def pend
+  #   @invitation.update(rsvp: 'PENDING')
+  #   redirect_to profile_path(anchor: 'invitations')
+  # end
 
-  def decline
-    @invitation.update(rsvp: 'DECLINED')
-    redirect_to profile_path(anchor: 'invitations')
-  end
+  # def decline
+  #   @invitation.update(rsvp: 'DECLINED')
+  #   redirect_to profile_path(anchor: 'invitations')
+  # end
 
   private
 
   def invitation_params
-    params.require( :event_id)
+    params.require(:invitation).permit(:attendee, :attended_event_id)
   end
 
 
 
-  def set_invitation
-    @invitation = Invitation.find(params[:id])
-  end
+  # def set_invitation
+  #   @invitation = Invitation.find(params[:id])
+  # end
 
 
 
