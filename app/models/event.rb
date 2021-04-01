@@ -10,9 +10,8 @@ class Event < ApplicationRecord
     through: :invitation,
     source: :user
 
-  scope :upcoming, -> { where('date > ?', Time.now) }
-  scope :past, -> { where('date < ?', Time.now) }
-
+    scope :upcoming_events, -> { where('date >= ?', Date.today) }
+    scope :past_events, -> { where('date < ?', Date.today) }
     def user_name
         user.username
       end

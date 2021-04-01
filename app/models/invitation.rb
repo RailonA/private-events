@@ -16,7 +16,7 @@ class Invitation < ApplicationRecord
   end
 
   def recipient_name
-    recipient.username
+    user.username
   end
 
   private

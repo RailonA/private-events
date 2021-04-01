@@ -1,28 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Events created by the user </h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>username</th>
-      <th>email</th>
-
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-<% @users.each do |user| %>
-    
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-
-        <td><%= link_to 'Show', @event %></td>
-      </tr>
+<section class="container">
+  <div class='row'>
+    <% @users.each do |user| %>
+      <div class="user_card card text-center m-2">
+        <div class="card-header">
+          <h2><%= user.username %></h2>
+          <h5><%= user.email %></h5>
+        </div>
+        <div class="card-body">
+          <p>Created events - <%= user.events.count %> </p>
+          <p>Joined events - <%= user.attendances.count %> </p>
+        </div>
+        <div class="card-footer text-muted">
+          2 days ago
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
-
-<br>
+  </div>
+</section>

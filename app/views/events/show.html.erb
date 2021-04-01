@@ -1,3 +1,8 @@
+<div class="section">
+<div class="container">
+<div class="columns is-centered">
+<div class="column is-5">
+
 <div class='event-show'>
   <div class='name-show'><%= @event.event %></div>
   <div class='basic-info-show'>
@@ -20,7 +25,7 @@
     <div class='list-category'>All invitation (<%= @event.invitation.count %>):</div>
     <% @event.invitation.includes(@attendee).order(:username).references(:recipient).each do |invitation| %>
       <div class="invitation-list-item <%= invitation.rsvp %>">
-        <li><%= link_to invitation.recipient.username, user_path(invitation.recipient_id) %></li>
+        <li><%= link_to invitation.user.username, user_path(invitation.attendee_id) %></li>
         <% if invitation.rsvp == 'ACCEPTED' %>
           <i class="fas fa-check"></i>
         <% elsif invitation.rsvp == 'PENDING' %>
@@ -33,7 +38,6 @@
   </div>
   <% if current_user.try(:id) == @event.creator_id %>
     <div>
-      <%= link_to 'Edit', edit_event_path(@event) %> |
       <%= link_to 'Update invitation', edit_event_path(@event) %> |
       <%= link_to 'Delete Event', event_path(@event), method: :delete, data: { confirm: 'Are you sure?'} %>
     </div>
@@ -42,3 +46,8 @@
 
 <br>
 <%= link_to 'Back', events_path, class: 'end-link' %>
+
+</div>
+</div>
+</div>
+</div>

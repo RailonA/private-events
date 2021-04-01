@@ -1,41 +1,65 @@
-  <nav class="navbar is-info">
-    <div class="navbar-brand">
-      <%= link_to root_path, class: "navbar-item" do%>
-          <h1 class="title is-5">Events</h1>
-      <% end %>
-      <div class="navbar-burger burger" data-target="navbarExample">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
 
-   <div id="navbarExample" class="navbar-menu">
+
+   <header  class="container-fluid mb-3  bg-dark">
+      <nav class="navbar navbar-expand-lg d-column d-lg-none bg-dark ">
+        <div class="d-flex col">
+            <%= link_to root_path, class: "navbar-item" do%>
+          <h1 class="title is-5 text-white ">MEMBERS ONLY</h1>
+            <% end %>
+        </div>
+
+        <button class="navbar-toggler text-white " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon burger">
+            <i class="fas fa-bars"></i>
+          </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ">
+  
+              <%= navbar_user_new_post %>
+
+              <%= navbar_current_user_link %>
+
+              <%= navbar_user_logout %>
+
+              <%= navbar_user_sign_in %>
+
+              <%= navbar_user_sign_up %>
+
+          </ul>
+        </div>
+      </nav>
+
+      <nav class="navbar navbar-expand-lg d-none d-lg-flex bg-dark" >
+          <div class="navbar-brand">
+      <%= link_to root_path, class: "navbar-item" do%>
+          <h1 class="title is-5 text-white">MEMBERS ONLY</h1>
+      <% end %>
+      </div>
+          <div id="navbarExample" class="navbar-menu">
       <div class="navbar-end">
       <div class="navbar-item">
           <div class="field is-grouped">
               <p class="control">
-                  <%= link_to "New Event", root_path, class: "button is-info is-inverted" %>
+                  <%= user_new_post %>
               </p>
-              <% if user_signed_in? %>
               <p class="control">
-              <%= link_to current_user.username, edit_user_registration_path, class: "button is-info" %>
-              <%# cookies[:current_user_id] %>
+              <%= current_user_link %>
               </p>
               <p>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "button is-info" %>
-              </p>
-              <%else%>
-              <p class= "control">
-              <%= link_to 'Sign In', new_user_session_path, class: "button is_info" %>
+              <%= user_logout %>
               </p>
               <p class= "control">
-              <%= link_to 'Sign Up', new_user_registration_path, class: "button is_info" %>
+              <%= user_sign_in %>
               </p>
-              <% end %>
+              <p class= "control">
+              <%= user_sign_up %>
+              </p>
           </div>
       </div>
    </div>
 </div>
-
 </nav>
+
+
+  </header>
