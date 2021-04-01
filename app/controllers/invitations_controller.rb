@@ -1,29 +1,46 @@
 class InvitationsController < ApplicationController
   before_action :authenticate_user!
 
-  before_action :set_event, only: [:new, :create, :edit, :update]
-  before_action :require_user!, only: [:new, :create, :edit, :update]
+  before_action :set_invitation, only: [:show,:new, :create, :edit, :update]
+  before_action :require_invitation!, only: [:show, :new, :create, :edit, :update]
 
   before_action :set_invitation, only: [:accept, :pend, :decline]
-  before_action :require_recipient!, only: [:accept, :pend, :decline]
+  before_action :require_invitation!, only: [:accept, :pend, :decline]
 
   def index
-    
+    @invitations = Invitation.all
   end
+  def show
+    @invitation = Invitation.find(params[:id]) 
+   end
 
   def new
-    render :new
+    @invitation = current_user.invitation.build
   end
 
+  # def create
+  #   params[:id].select { |_k, v| v == '1' }.keys.map(&:to_i).each do |user_id|
+  #     @event.invitations.find_or_create_by(invitation: user_id)
+  #   end
+  #   redirect_to event_url(@event)
+  # end
+
   def create
-    params[:recipient].select { |_k, v| v == '1' }.keys.map(&:to_i).each do |user_id|
-      @event.invitations.find_or_create_by(recipient_id: user_id)
+    @invitation = current_user.invitation.build(params[:invitation_params])
+
+    respond_to do |format|
+      if @invitation.save
+        format.html { redirect_to root_path, notice: "invitation was successfully created." }
+        format.json { render :show, status: :created, location: @invitation }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @invitation.errors, status: :unprocessable_entity }
+      end
     end
-    redirect_to event_url(@event)
   end
 
   def edit
-    if @event.date < Time.now
+    if @event.date < Time.current
       flash.notice = 'You cannot update invitations for past events.'
       redirect_to @event
     else
@@ -69,23 +86,23 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:event_id, :recipient_id)
+    params.require( :event_id)
   end
+
+
 
   def set_invitation
     @invitation = Invitation.find(params[:id])
   end
 
-  def set_event
-    @event = Event.find(params[:event_id])
-  end
 
-  def require_user!
-    unless current_user.try(:id) == @event.user_id
-      flash[:alert] = 'You are not authorized to edit invitations for this event!'
-      redirect_to root_url
-    end
-  end
+
+  # def require_user!
+  #   unless current_user.try(params[:id]) == @event
+  #     flash[:alert] = 'You are not authorized to edit invitations for this event!'
+  #     redirect_to root_url
+  #   end
+  # end
 
   def require_recipient!
     unless current_user.try(:id) == @invitation.recipient_id

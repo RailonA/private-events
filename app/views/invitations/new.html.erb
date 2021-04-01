@@ -1,23 +1,23 @@
-<h4><%= @event.name %></h4>
 
-<p>Update your invitation list.</p>
+<p>You're almost done! Now it's time to invite some guests!</p>
 
 
-<%= form_with(url: event_invitations_path(@event), method: :patch, local: true) do |f| %>
-  <%= hidden_field_tag(:event_id, @event.id) %>
-  <% temp_invitations = @event.invitations.pluck(:recipient_id) %>
-  <% User.order(:username).each do |user| %>
+<%= form_with(url: event_invitations_path, local: true) do |f| %>
+  <% User.all.each do |user| %>
+
     <div class='checkbox'>
-      <%= f.check_box("recipient[#{user.id}]", { checked: !!temp_invitations.delete(user.id) } ) %>
+
+      <%= f.check_box("recipient[#{user.id}]") %>
+
       <%= user.username %>
+
     </div>
   <% end %>
+  
   <br>
-  <%= submit_tag('Update Invitations!', class: 'important-button') %>
+  <%= submit_tag('Invite Guests!', class: 'important-button') %>
 <% end %>
 
+
 <br>
-<div class='end-link'>
-  <%= link_to 'Cancel', @event %> |
-  <%= link_to 'Home', events_path %>
-</div>
+<%= link_to 'Home Page', events_path, class: 'end-link' %>
