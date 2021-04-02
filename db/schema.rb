@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2021_03_30_165345) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.string "rsvp", default: "PENDING", null: false
     t.integer "attendee_id"
     t.integer "attended_event_id"
     t.datetime "created_at", precision: 6, null: false
