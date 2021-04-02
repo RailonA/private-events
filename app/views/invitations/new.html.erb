@@ -1,16 +1,14 @@
 
 <p>You're almost done! Now it's time to invite some guests!</p>
 
+<%# edit_user_item_path(@user, item) %>
+  <%= form_with  url: event_invitations_path() do |f| %>
 
-<%= form_with(url: event_invitations_path, local: true) do |f| %>
+  <%= hidden_field_tag(:attended_event_id, @invitation) %>
   <% User.all.each do |user| %>
-
-    <div class='checkbox'>
-
-      <%= f.check_box("recipient[#{user.id}]") %>
-
-      <%= user.username %>
-
+    <div class='checkbox column'>
+      <%= f.check_box "attendee_id[user_ids][]" %>
+      <%= label_tag user.username %>
     </div>
   <% end %>
   
@@ -21,3 +19,8 @@
 
 <br>
 <%= link_to 'Home Page', events_path, class: 'end-link' %>
+
+      <%# <%= f.check_box("attendee[#{user.id}]") %> %>
+      <%# <%= f.check_box_tag "attendee_id[user_ids][]" %> %>
+     
+   

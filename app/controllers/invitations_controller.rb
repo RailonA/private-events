@@ -10,34 +10,36 @@ class InvitationsController < ApplicationController
   def index
     @invitations = Invitation.all
   end
-  def show
-    @invitation = Invitation.find(params[:id]) 
-   end
 
   def new
-    @invitation = current_user.invitation.build
+    @invitation = Invitation.new
   end
+
+  def show
+    @invitation = Invitation.find(params[:id]) 
+  end
+
+  
+  def create
+    invitation_params.select { |_k, v| v == '1' }.keys.map(&:to_i).each do |user_id|
+      @event.invitations.find_or_create_by(invitation: user_id)
+    end
+    redirect_to users_path(@user)
+  end
+
+  # Hash[Invitation.where(invitation_id: @invitation.id).pluck(:key, :value)]
 
   # def create
-  #   params[:id].select { |_k, v| v == '1' }.keys.map(&:to_i).each do |user_id|
-  #     @event.invitations.find_or_create_by(invitation: user_id)
+  #   @event = Event.find(params[:event_id])
+  #   @invitation = Invitation.new(invitation_params)
+  #   @invitation.attended_event_id = @event.id 
+  #   if @invitation.save
+  
+  #     redirect_to user_invitation_path(current_user)
+  #   else
+  #      render :new
   #   end
-  #   redirect_to event_url(@event)
   # end
-
-  def create
-    @invitation = current_user.invitation.build(params[:invitation_params])
-
-    respond_to do |format|
-      if @invitation.save
-        format.html { redirect_to root_path, notice: "invitation was successfully created." }
-        format.json { render :show, status: :created, location: @invitation }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @invitation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   def edit
     if @event.date < Time.current
@@ -86,7 +88,9 @@ class InvitationsController < ApplicationController
   private
 
   def invitation_params
-    params.require(:invitation).permit(:attendee, :attended_event_id)
+    params.permit(:attendee, :attended_event_id)
+
+    # params.require(:invitation).permit(:attendee, :attended_event_id)
   end
 
 

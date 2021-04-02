@@ -4,7 +4,8 @@ class Event < ApplicationRecord
 
     has_many :invitation,
     class_name: "Invitation",
-    foreign_key: :attended_event_id
+    foreign_key: :attended_event_id, 
+    through: :user
 
     has_many :attendee,
     through: :invitation,

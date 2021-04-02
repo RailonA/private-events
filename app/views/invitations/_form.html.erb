@@ -1,30 +1,26 @@
-  <%# <div ><%= link_to @invitation event_path(invitation.event) %></div>
-  <%# <div ><%= invitation.event.date_only %></div>
-  <div > 
-    <% if @upcoming_events %>
-      <% if @invitation.rsvp == 'ACCEPTED' %>
-        <%= button_to 'Attending', pend_invitation_path(invitation), class: 'current-status rsvp' %>
-        <%= button_to 'Declined', decline_invitation_path(invitation), class: 'rsvp' %>
-      <% elsif invitation.rsvp == 'DECLINED' %>
-        <%= button_to 'Attending', accept_invitation_path(invitation), class: 'rsvp' %>
-        <%= button_to 'Declined', pend_invitation_path(invitation), class: 'current-status rsvp' %>
-      <% else %>
-        <%= button_to 'Attending', accept_invitation_path(invitation), class: 'rsvp' %>
-        <%= button_to 'Declined', decline_invitation_path(invitation), class: 'rsvp' %>
-      <% end %>
-    <% else %>
-      <% if @invitation  == 'ACCEPTED' %>
-        <div>Attended</div>
-        <div >Declined</div>
-      <% elsif @invitation == 'DECLINED' %>
-        <div >Attended</div>
-        <div >Declined</div>
-      <% else %>
-        <div class='past-action'>Attended</div>
-        <div class='past-action'>Declined</div>
-      <% end %>
-    <% end %>
-  </div>
-<%# </div>
-</div> %>
 
+<p>You're almost done! Now it's time to invite some guests!</p>
+
+<%# edit_user_item_path(@user, item) %>
+<%= form_with url: event_invitation_path do |f| %>
+  
+    <%# <%= hidden_field_tag(:attended_event_id, @invitation) %> %>
+  <% User.all.each do |user| %>
+    <div class='checkbox column'>
+      <%= f.check_box_tag "attendee_id[user_ids][]" %>
+      <%= label_tag user.username %>
+    </div>
+  <% end %>
+  
+  <br>
+  <%= submit_tag('Invite Guests!', class: 'important-button') %>
+<% end %>
+
+
+<br>
+<%= link_to 'Home Page', events_path, class: 'end-link' %>
+
+      <%# <%= f.check_box("attendee[#{user.id}]") %> %>
+      <%# <%= f.check_box_tag "attendee_id[user_ids][]" %> %>
+     
+   

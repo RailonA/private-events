@@ -8,7 +8,7 @@
   <% temp_invitations = @event.invitations.pluck(:recipient_id) %>
   <% User.order(:username).each do |user| %>
     <div class='checkbox'>
-      <%= f.check_box("recipient[#{user.id}]", { checked: !!temp_invitations.delete(user.id) } ) %>
+      <%= f.check_box("attendee[#{user.id}]", { checked: !!temp_invitations.delete(user.id) } ) %>
       <%= user.username %>
     </div>
   <% end %>

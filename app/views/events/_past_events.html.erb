@@ -13,7 +13,7 @@
             <% @past_events and @past_events.each do |event| %>
                 <div>
                     <tr>
-                        <td><%= event.user.username %></td>
+                        <td><%= link_to event.user.username, users_path(@user) %></td>
                         <td><%= event.event %></td>
                         <td><%= event.date %></td>
                         <td><%= event.location %></td>
