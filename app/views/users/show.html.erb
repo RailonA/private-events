@@ -1,0 +1,59 @@
+<div class="text-center">
+  <h1 class="p-3 border-bottom bg-dark text-center text-white font-one">My Events</h1>
+
+<div class="d-flex justify-content-center mx-auto w-50 mt-5">
+  <div class="d-flex flex-column w-50 border border-success rounded me-5">
+    <h3 class="p-3 bg-success font-one text-light">My Upcoming Events:</h3>
+    <div class="d-flex flex-column">
+        <% @user.created_events.upcoming.each do |event|%>
+        <div class="d-flex justify-content-center mt-4">
+        <p class="text-primary font-one ">Event:&nbsp</p>
+        <div class="text-secondary font-one"> <%= event.title %></div>
+        
+        </div>
+        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
+      <%end%>
+  </div>
+</div>
+<div class="d-flex flex-column w-50 border border-info rounded me-5">
+    <h3 class="p-3 bg-info font-one text-dark">Events I'm Going:</h3>
+    <div class="d-flex flex-column">
+        <% @user.event_attended.upcoming.each do |event|%>
+        <div class="d-flex justify-content-center mt-4">
+        <p class="text-primary font-one ">Event:&nbsp</p>
+        <div class="text-secondary font-one"> <%= event.title %></div>
+        
+        </div>
+        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
+      <%end%>
+  </div>
+</div>
+</div>
+
+<div class="d-flex justify-content-center mx-auto w-50 mt-5">
+  <div class="d-flex flex-column w-50 border border-success rounded me-5">
+    <h3 class="p-3 bg-success font-one text-light">My Past Events:</h3>
+    <div class="d-flex flex-column">
+        <% @user.created_events.past.each do |event|%>
+        <div class="d-flex justify-content-center mt-4">
+        <p class="text-primary font-one ">Event:&nbsp</p>
+        <div class="text-secondary font-one"> <%= event.title %></div>
+        
+        </div>
+        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
+      <%end%>
+  </div>
+</div>
+<div class="d-flex flex-column w-50 border border-info rounded me-5">
+    <h3 class="p-3 bg-info font-one text-dark">Events I Went:</h3>
+    <div class="d-flex flex-column">
+        <% @user.attended_events.past.each do |event|%>
+        <div class="d-flex justify-content-center mt-4">
+        <p class="text-primary font-one ">Event:&nbsp</p>
+        <div class="text-secondary font-one"> <%= event.title %></div>
+        
+        </div>
+        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
+      <%end%>
+    </div>
+    <div>

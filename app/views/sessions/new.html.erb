@@ -1,0 +1,24 @@
+<div class="text-center  mx-auto mt-5">
+  <h1 class="font-one">Login</h1>
+  <div class="p-4 border border-success bg-secondary w-25 mx-auto">
+    <%= form_with url: '/sessions' do |f| %>
+  <div class="m-3 font-two fw-bold text-light">
+  <%= label_tag(:username, "Your Username:") %>
+  </div>
+    
+    <div class="m-3">
+    <%= f.text_field(:username, placeholder: 'Username') %>
+    </div>
+    
+   
+    <%= f.submit('Enter', :class => 'btn btn-success text-white fw-bold font-two border border-white m-3') %>
+  <% end %>
+  </div>
+
+</div>
+
+
+
+
+
+

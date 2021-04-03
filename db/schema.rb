@@ -10,41 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_30_165345) do
+ActiveRecord::Schema.define(version: 2021_04_02_211338) do
 
   create_table "events", force: :cascade do |t|
-    t.string "event"
+    t.string "title"
     t.datetime "date"
     t.string "location"
     t.text "description"
     t.integer "creator_id"
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_events_on_user_id"
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.integer "attendee_id"
+    t.integer "event_attendee_id"
     t.integer "attended_event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["attended_event_id"], name: "index_invitations_on_attended_event_id"
-    t.index ["attendee_id"], name: "index_invitations_on_attendee_id"
+    t.index ["event_attendee_id"], name: "index_invitations_on_event_attendee_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.string "username"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "events", "users"
+  add_foreign_key "events", "users", column: "creator_id"
   add_foreign_key "invitations", "events", column: "attended_event_id"
-  add_foreign_key "invitations", "users", column: "attendee_id"
+  add_foreign_key "invitations", "users", column: "event_attendee_id"
 end

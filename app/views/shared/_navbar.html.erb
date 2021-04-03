@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand ms-2 text-warning bg-dark ps-2 pe-2 font-two fw-bold" href="/">Private Events App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto d-flex align-items-center ms-5">
+      <li class="nav-item active">
+        <%# <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> %>
+        <%= link_to "All Events", events_path, class: "nav-link text-dark  nav-link-left font-one" %>
+      </li>
+      <% if logged_in? %>
+      <li class="nav-item">
+        <%# <a class="nav-link" href="#">Link</a> %>
+        <%= link_to "My Events", user_path(current_user), class: "nav-link  text-dark font-one nav-link-left" %>
+      </li>
+      <% end %>
+      <% if logged_in? %>
+      <li class="nav-item">
+        <%= link_to "New Event", new_event_path, class: "nav-link text-dark font-one nav-link-left" %>
+      </li>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav d-flex justify-content-end align-items-center me-3">
+    <% if !logged_in? %>
+      <li class="nav-item">
+        <%= link_to "Log In", new_session_path, class: "nav-link text-success font-two" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Register', new_user_path, class: "nav-link text-primary font-two" %>
+      </li>
+      <% else %>
+      <li class="nav-item d-flex align-items-center font-two">
+        <i class="fas fa-user-astronaut me-2 text-primary"></i>
+        <%= current_user.username %>
+      </li>
+      <li class="nav-item font-two text-primary">
+        <%= link_to "Log Out", session_path(session[:username]), class: "nav-link text-primary", method: :delete %>      
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+
+

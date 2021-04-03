@@ -1,0 +1,16 @@
+<div class="text-center w-25 mx-auto mt-5">
+<% @event.invitations.each do |a| %>
+   <div class="d-flex justify-content-center align-items-center text-dark fs-5 font-two p-1 bg-dark text-white border-bottom  border-warning"><%= Event.find(a.attended_event_id).title %></div>
+   <div class="d-flex justify-content-center align-items-center text-dark fs-5 font-two p-1 bg-dark text-white"><p class="font-two text-warning fs-5 pt-3">About: &nbsp</p><%= Event.find(a.attended_event_id).description %></div>
+   <div class="d-flex justify-content-center align-items-center text-dark fs-5 font-two p-1 bg-dark text-white"><p class="font-two text-warning fs-5 pt-3" >Where: &nbsp</p><%= Event.find(a.attended_event_id).location %></div>
+   <div class="d-flex justify-content-center align-items-center text-dark fs-5 font-two p-1 bg-dark text-white"><p class="font-two text-warning fs-5 pt-3" >When: &nbsp</p><%= Event.find(a.attended_event_id).date %></div>
+   <% break %>
+<%end %>
+
+
+<h4 class="bg-dark text-warning font-2 font-two p-2 mt-4">People attending to this event:</h4>
+<div class="d-flex flex-column justify-content-start border border-secondary">
+<% @event.attendences.each do |a| %>
+   <div class="w-100 text-start border-bottom border-secondary ps-3 text-secondary fs-3 font-two"><%= User.find(a.event_attende_id).username %></div>
+<%end%>
+</div>
