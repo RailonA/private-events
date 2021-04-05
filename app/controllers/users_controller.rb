@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
     def new
-      @user = User.new
+      @users = User.new
     end
   
-    def index; end
+    def index
+      @user = @current_user.achievements
+    end
   
     def create
       @user = User.new(user_params)

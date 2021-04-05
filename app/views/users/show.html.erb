@@ -18,7 +18,10 @@
 <div class="d-flex flex-column w-50 border border-info rounded me-5">
     <h3 class="p-3 bg-info font-one text-dark">Events I'm Going:</h3>
     <div class="d-flex flex-column">
-        <% @user.event_attended.upcoming.each do |event|%>
+        <%# <% current_user.event_attended.each do |event|%> 
+        <%# <% @user.event_attended.upcoming.each do |event|%> %>
+        <% current_user.event_attended.each do |event|%>
+
         <div class="d-flex justify-content-center mt-4">
         <p class="text-primary font-one ">Event:&nbsp</p>
         <div class="text-secondary font-one"> <%= event.title %></div>
@@ -47,7 +50,9 @@
 <div class="d-flex flex-column w-50 border border-info rounded me-5">
     <h3 class="p-3 bg-info font-one text-dark">Events I Went:</h3>
     <div class="d-flex flex-column">
-        <% @user.attended_events.past.each do |event|%>
+       <%# <% @user.attended_events.past.each do |event|%> %>
+        <%# <% current_user.event_attended.each do |event|%> %>
+        <% current_user.event_attended.each do |event|%>
         <div class="d-flex justify-content-center mt-4">
         <p class="text-primary font-one ">Event:&nbsp</p>
         <div class="text-secondary font-one"> <%= event.title %></div>

@@ -1,7 +1,7 @@
-<%= form_for(@invitations) do |f| %>
-  <%= f.label :event_attendee_id %>
-  <%= f.number_field :event_attendee_id %>
-  <%= f.label :attended_event_id %>
-  <%= f.number_field :attended_event_id %>
+<%= form_for(@invitation) do |f| %>
+  <%= f.label :attendee_id %>
+  <%= f.number_field :attendee_id %>
+  <%= f.label :event_attended_id %>
+  <%= f.number_field :event_attended_id %>
   <%= f.submit %>
 <% end %>

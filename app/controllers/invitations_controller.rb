@@ -1,12 +1,12 @@
 class InvitationsController < ApplicationController
     include InvitationsHelper
 
-    def index
-      @invitations = invitation.all
-    end
+    # def index
+    #   @invitations = Invitation.all
+    # end
   
     def new
-      @invitation = Invitation.new
+      @invitations = Invitation.new
     end
   
     def create
@@ -20,4 +20,12 @@ class InvitationsController < ApplicationController
       end
     end
 
+
+    private
+
+    def invitation_params
+      # params.require(:invitations).permit(:attendee_id, :event_attended_id)
+      params.permit(:attendee_id, :event_attended_id)
+
+    end
 end
