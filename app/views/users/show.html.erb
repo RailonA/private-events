@@ -20,11 +20,11 @@
     <div class="d-flex flex-column">
         <%# <% current_user.event_attended.each do |event|%> 
         <%# <% @user.event_attended.upcoming.each do |event|%> %>
-        <% current_user.event_attended.each do |event|%>
+        <% @user.event_attended.each do |event|%>
 
         <div class="d-flex justify-content-center mt-4">
         <p class="text-primary font-one ">Event:&nbsp</p>
-        <div class="text-secondary font-one"> <%= event.title %></div>
+        <div class="text-secondary font-one"> <%= event.upcoming.title %></div>
         
         </div>
         <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>

@@ -11,6 +11,6 @@
 <h4 class="">People attending to this event:</h4>
 <div class="">
 <% @invitations.each do |a| %>
-   <div class=""><%= User.find(a.event_attended_id).username %></div>
+   <div class=""><%= User.find(a.attendee_id).username %></div>
 <%end%>
 </div>
