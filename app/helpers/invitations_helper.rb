@@ -1,5 +1,5 @@
 module InvitationsHelper
     def invitation_params
-      params.permit(:event_attendee_id, :attended_event_id)
+      params.permit(:attendee_id, :event_attended_id)
     end
   end

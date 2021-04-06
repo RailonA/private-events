@@ -27,7 +27,7 @@
     
     <div class="border-bottom border-success pt-2 pb-3 mb-2">
        <% if logged_in? %>
-        <%= link_to 'Attend Event', invitations_path(:attended_event_id => event.id, :event_attende_id => current_user.id), :method => :post %><br>
+        <%= link_to 'Attend Event', invitations_path(:event_attended_id => event.id, :attendee_id => current_user.id), :method => :post %><br>
         <%= link_to 'Events Details', event_path(event) %>
       <% end %>
     </div>
