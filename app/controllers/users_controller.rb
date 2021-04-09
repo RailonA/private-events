@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     end
   
     def index
-      @user = @current_user.achievements
+      @user = User.all
     end
   
     def create
@@ -16,11 +16,15 @@ class UsersController < ApplicationController
   
     def show
       @user = User.find(params[:id])
-      # @upcoming_events = @user.attended_events.upcoming_events
-      # @previous_events = @user.attended_events.previous_events
+      @upcoming_events = @user.created_events.upcoming
+      @previous_events = @user.created_events.past
     end
   
     private
+
+    def set_user
+      @user = User.find(params[:id])
+    end
   
     def user_params
       params.require(:user).permit(:username)

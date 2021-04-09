@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: %i[show edit destroy update]
+  before_action :signed_in?, only: [:index]
+
   def index
     @events = Event.all
     @upcoming = Event.upcoming
@@ -6,7 +9,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = current_user.created_events.new
+    @event = Event.new
   end
 
   def create
@@ -23,10 +26,15 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @invitations = Invitation.all
+    @attendees = @event.attendees
     @users = User.all
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params
     params.require(:event).permit(:description, :title, :date, :location)

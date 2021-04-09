@@ -20,7 +20,7 @@
     <div class="d-flex flex-column">
         <%# <% current_user.event_attended.each do |event|%> 
         <%# <% @user.event_attended.upcoming.each do |event|%> %>
-        <% @user.event_attended.each do |event|%>
+        <% @user.created_events.each do |event|%>
 
         <div class="d-flex justify-content-center mt-4">
         <p class="text-primary font-one ">Event:&nbsp</p>

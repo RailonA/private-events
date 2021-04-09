@@ -1,16 +1,13 @@
 <div class="text-center w-25 mx-auto mt-5">
-<% @invitations.each do |a| %>
    <div class=""><%= @event.title %></div>
    <div class=""><p class="">About: &nbsp</p><%= @event.description %></div>
    <div class=""><p class="" >Where: &nbsp</p><%= @event.location %></div>
    <div class=""><p class="" >When: &nbsp</p><%= @event.date %></div>
-   <% break %>
-<%end %>
 
 
 <h4 class="">People attending to this event:</h4>
 <div class="">
-<% @invitations.each do |a| %>
-   <div class=""><%= User.find(a.attendee_id).username %></div>
-<%end%>
+     <% @attendees.each do |attendee| %>
+        <li><%= attendee.username %></li>
+      <% end %>
 </div>

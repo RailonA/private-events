@@ -1,10 +1,10 @@
 class Event < ApplicationRecord
-  attr_accessor :user
+  belongs_to :creator, class_name: 'User'
 
-    has_many :event_attended, foreign_key: "event_attended_id", class_name: 'Invitations', dependent: :destroy
-    has_many :attendee, foreign_key: "attendee_id", class_name: 'Invitations', dependent: :destroy
-    belongs_to :creator,foreign_key: "creator_id", class_name: 'User'
-  
+  has_many :invitations, foreign_key: :event_attended_id
+  has_many :attendees, through: :invitations, source: :attendee
+
+
     scope :upcoming, -> { where('date >= ?', DateTime.now) }
     scope :past, -> { where('date < ? ', DateTime.now) }
   end
