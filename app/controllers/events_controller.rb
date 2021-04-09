@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  include EventsHelper
+
+  
   before_action :set_event, only: %i[show edit destroy update]
   before_action :signed_in?, only: [:index]
 

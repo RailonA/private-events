@@ -13,13 +13,14 @@ class InvitationsController < ApplicationController
     end
   
     def create
-      @attended_event= Invitation.new(invitation_params)
+      @invitation = Invitation.new(invitation_params)
   
-      if @attended_event.save
-        redirect_to events_path, notice: 'Thanks for following'
-          else
-            redirect_to events_path, alert: 'You can only attend once (Matrix! Perhaps!?)'
-          end
+      if @invitation.save
+        redirect_to events_path
+        flash[:notice] = 'Your subscription to this event is approved!'
+      else
+        redirect_to new_invitation_path
+       end
     end
 
 

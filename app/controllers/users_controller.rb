@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-    def new
+  before_action :set_user, only: %i[show edit update destroy]
+
+  def new
       @users = User.new
     end
   
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
   
     def show
       @user = User.find(params[:id])
+      @events_by_current_user = @events
       @upcoming_events = @user.created_events.upcoming
       @previous_events = @user.created_events.past
     end
