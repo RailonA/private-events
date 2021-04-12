@@ -1,7 +1,7 @@
 
 # Private-Events
-A rails Members Only project
-> In this project, it has been built an application named Private Events that behaves similar to Eventbrite. The main goal was to put in practice the main concepts of Associations in rails. Mainly, given the main character (the user), the events and invitations can be created with the user in mind; the user can attend an event, can create and event, can delete, etc. Find it at https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/associations
+A rails Private-Events project
+> In this project, it has been built an application named. The main goal was to put in practice the main concepts of Associations in rails. Mainly, given the main character (the user), the events and invitations can be created with the user in mind; the user can attend an event, can create an event, can delete, etc. Find it at https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/associations
 
 ## Screenshot
 - ![screenshot](./app/assets/images/new_user.png)
@@ -54,7 +54,7 @@ Contributions, issues and feature requests are welcome!
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/RailonA/members_only/issues).
+Feel free to check the [issues page](https://github.com/RailonA/private-events/issues).
 
 ## Acknowledgments
 
