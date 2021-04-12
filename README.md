@@ -1,7 +1,15 @@
 
 # Private-Events
 A rails Members Only project
-> This is part of the Forms Project in The Odin Project’s Ruby on Rails Curriculum. Find it at https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/associations
+> In this project, it has been built an application named Private Events that behaves similar to Eventbrite. The main goal was to put in practice the main concepts of Associations in rails. Mainly, given the main character (the user), the events and invitations can be created with the user in mind; the user can attend an event, can create and event, can delete, etc. Find it at https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/associations
+
+## Screenshot
+- ![screenshot](./app/assets/images/new_user.png)
+- ![screenshot](./app/assets/images/list_of_events.png)
+- ![screenshot](./app/assets/images/user.png)
+- ![screenshot](./app/assets/images/events_attended.png)
+
+
 ## Built With
 - RUBY
 - Ruby On Rails
