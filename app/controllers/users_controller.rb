@@ -26,15 +26,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
 
-
   def create
     @user = User.new(user_params)
     @user.save
     flash[:notice] = 'User created, make your login'
     redirect_to root_path
   end
-
-
 
   private
 

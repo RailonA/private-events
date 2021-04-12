@@ -6,8 +6,4 @@ module EventsHelper
             method: :delete,
             class: 'button is-primary has-text-white'
   end
-
-
-
-  
 end

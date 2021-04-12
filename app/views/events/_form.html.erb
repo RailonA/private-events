@@ -30,7 +30,7 @@
         <%= form.label :description %>
       </p>
       <p>
-        <%= form.text_area :description, class:'textarea is-primary', placeholder:'Create new event...' %>
+        <%= form.text_area :description, class:'textarea is-info', placeholder:'Create new event...' %>
       </p>
     </div>
 
@@ -44,7 +44,7 @@
     </div>
 
     <div >
-      <%= form.submit %>
+       <%= form.submit 'Submit', class:"button is-info is-info " %>
     </div>
   </div>
 <% end %>
