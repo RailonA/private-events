@@ -1,0 +1,29 @@
+<div class="has-shadow ">
+  <nav class="navbar Secondary">
+    <% if current_user %>
+      <div class="nav-start">
+
+        <strong><%= link_to 'Home', root_path, class:'navbar-item' %></strong>
+        <strong><%= link_to 'Users', users_path, class:'navbar-item' %></strong>
+        <strong><%= link_to 'All Events', root_path, class:'navbar-item' %></strong>
+        <strong><%= link_to current_user.name.capitalize, user_path(current_user), class:'navbar-item' %></strong>
+      </div>
+      <div class="nav-end">
+        <strong><%= link_to 'New Event', new_event_path, class:'button is-info' %></strong>
+        <strong><%= link_to 'Log out', logout_path, method: :delete, class:'button is-info' %></strong>
+      </div>
+    <% end %>
+
+    <% if !current_user %>
+      <div class="nav-start">
+
+      </div>
+      <div class="nav-end">
+        <strong><%= link_to 'Log in', login_path, class:'button is-info' %></strong>
+        <strong><%= link_to 'Sign up', new_user_path, class:'button is-info' %></strong>
+      </div>
+    <% end %>
+  </nav>
+</div>
+
+

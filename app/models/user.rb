@@ -1,16 +1,15 @@
-
-
 class User < ApplicationRecord
-  validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 25 }
-  
-  has_many :attended_events, through: :invitations, source: :event_attended
-  has_many :attendee, foreign_key: 'attendee_id', class_name: 'Invitation', dependent: :destroy
-  has_many :created_events, foreign_key: 'creator_id', class_name: 'Event', dependent: :destroy
+  has_many :events, foreign_key: :creator_id
+  has_many :invitations, foreign_key: :attendee_id
+  has_many :attended_events, through: :invitations, source: :attended_event
+  validates :name, presence: true, length: { minimum: 4, maximum: 20 }
+  EMAIL_FORMAT = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  validates :email, presence: true, format: { with: EMAIL_FORMAT }, uniqueness: true
 
+  before_save { self.email = email.downcase }
+  # has_secure_password
 
   def attending?(event)
     attended_events.include?(event)
   end
-
-end 
-
+end

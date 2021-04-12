@@ -1,19 +1,10 @@
-
-<div class="text-center  mx-auto mt-5">
-  <h1 class="font-one">Create New User</h1>
-  <div class="">
-    <%= form_for(@users) do |f| %>
-  <div class="">
-  <%= label_tag(:username, "Choose Your Username:") %>
-  </div>
-    
-    <div class="m-3">
-    <%= f.text_field(:username, placeholder: 'New Username') %>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <h1 class="title title-event is-10 navbar-item is-capitalized is-marginless" style="padding-left: 0">New User</h1>
+        <%= render 'form', user: @user %>
+      </div>
     </div>
-    
-   
-    <%= f.submit('Create User', :class => 'btn btn-primary m-3 border border-white fw-bold font-two') %>
-  <% end %>
   </div>
-
 </div>

@@ -1,15 +1,17 @@
 Rails.application.routes.draw do
-
-  resources :users, only: %i[new create show index]
-  resources :sessions, only: %i[new create destroy]
-  resources :events
-  resources :invitations
-
-
-
-  # get 'invitations',  to:"invitations#new"
-
   root 'events#index'
+  resources :events do
+    member do
+      post 'attend', to: 'invitations#create'
+      delete 'unattend', to: 'invitations#destroy'
+    end
+  end
 
-  #  delete 'logout' => 'sessions#destroy'
+  resources :users
+
+  get 'sessions/new'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end

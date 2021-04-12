@@ -1,28 +1,4 @@
-<div class="text-center">
-<h1 class="" > Create a new Event </h1>
-
-<div class="">
-<%= form_for(@event) do |f| %>
-  <div class="">
-  <h4 class=""><%= f.label :title, 'Event Title',class:'m-0 col-4 m-0 h3' %></h4>
-  <div class=""><%= f.text_field :title %></div>
-  </div>
-        <div class="">
-      <%= f.label :date,'Date:', class:'m-0 col-4 m-0 h3' %>
-      <%= f.datetime_select :date, class: "form-control col-8"  %>
-      </div>
-      
-   <div class="">
-  <h4 class=""><%= f.label :description, 'Description',class:'m-0 col-4 m-0 h3' %></h4>
-  <div class=""><%= f.text_field :description %></div>
-  </div>
-   <div class="">
-  <h4 class=""><%= f.label :location, 'Location',class:'m-0 col-4 m-0 h3' %></h4>
-  <div class=""><%= f.text_field :location %></div>
-  </div>
-
-  <%= f.submit('Create Event', :class => '')%>
-<% end %>
+<div class="controls">
+  <%= link_to 'Back', root_path, class:'button is-info' %>
 </div>
-
-</div>
+<%= render 'form', event: @event %>

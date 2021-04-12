@@ -1,64 +1,66 @@
-<div class="text-center">
-  <h1 class="p-3 border-bottom bg-dark text-center text-white font-one">My Events</h1>
 
-<div class="d-flex justify-content-center mx-auto w-50 mt-5">
-  <div class="d-flex flex-column w-50 border border-success rounded me-5">
-    <h3 class="p-3 bg-success font-one text-light">My Upcoming Events:</h3>
-    <div class="d-flex flex-column">
-        <% @user.created_events.upcoming.each do |event|%>
-        <div class="d-flex justify-content-center mt-4">
-        <p class="text-primary font-one ">Event:&nbsp</p>
-        <div class="text-secondary font-one"> <%= event.title %></div>
-        
-        </div>
-        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
-      <%end%>
-  </div>
-</div>
-<div class="d-flex flex-column w-50 border border-info rounded me-5">
-    <h3 class="p-3 bg-info font-one text-dark">Events I'm Going:</h3>
-    <div class="d-flex flex-column">
-        <%# <% current_user.event_attended.each do |event|%> 
-        <%# <% @user.event_attended.upcoming.each do |event|%> %>
-        <% @user.created_events.each do |event|%>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+      <div class="event-tables tables">
+        <h1 class="title title-event is-4 navbar-item"><%= @user.name.capitalize %>'s events:</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>
+          </thead>
 
-        <div class="d-flex justify-content-center mt-4">
-        <p class="text-primary font-one ">Event:&nbsp</p>
-        <div class="text-secondary font-one"> <%= @upcoming %></div>
-        
-        </div>
-        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
-      <%end%>
-  </div>
-</div>
-</div>
+          <tbody>
+            <%= render @events_by_current_user %>
+          </tbody>
+        </table>
+      </div>
 
-<div class="d-flex justify-content-center mx-auto w-50 mt-5">
-  <div class="d-flex flex-column w-50 border border-success rounded me-5">
-    <h3 class="p-3 bg-success font-one text-light">My Past Events:</h3>
-    <div class="d-flex flex-column">
-        <% @user.created_events.past.each do |event|%>
-        <div class="d-flex justify-content-center mt-4">
-        <p class="text-primary font-one ">Event:&nbsp</p>
-        <div class="text-secondary font-one"> <%= event.title %></div>
-        
-        </div>
-        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
-      <%end%>
-  </div>
-</div>
-<div class="d-flex flex-column w-50 border border-info rounded me-5">
-    <h3 class="p-3 bg-info font-one text-dark">Events I Went:</h3>
-    <div class="d-flex flex-column">
-       <%# <% @user.attended_events.past.each do |event|%> %>
-        <%# <% current_user.event_attended.each do |event|%> %>
-        <% current_user.created_events.each do |event|%>
-        <div class="d-flex justify-content-center mt-4">
-        <p class="text-primary font-one ">Event:&nbsp</p>
-        <div class="text-secondary font-one"> <%= event.title %></div>
-        
-        </div>
-        <div class="pb-5  border-bottom border-success"><%= link_to 'Events Details', event_path(event) %></div>
-      <%end%>
+      <div class="event-tables tables">
+        <h1 class="title title-event is-4 navbar-item"><%= @user.name.capitalize %> is attending the following events:</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="text-secondary ">Upcoming Events</span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%= render @upcoming_events %>
+          </tbody>
+      </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th>
+                <span class="text-secondary">Previous Events</span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%= render @prev_events %>
+          </tbody>
+        </table>
+      </div>
+
+     </div>
     </div>
-    <div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+      <div class="controls">
+        <%= link_to 'Back', users_path, class:'button is-info' %>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-10">
+        <%= form_with(model: user, local: true) do |form| %>
+          <% if user.errors.any? %>
+            <div class="box box-radius has-background-danger has-text-white">
+              <div id="error_explanation">
+                <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+                <ul>
+                  <% user.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+          <div class="actions">
+            <div class="field">
+              <%= form.label :name, class:'label' %>
+              <div class="control">
+                <%= form.text_field :name, class:'input is-border border-info' %>
+              </div>
+              <%= form.label :email, class:'label mt-5' %>
+              <div class="control ">
+                <%= form.email_field :email, class:'input border border-info mb-5'  %>
+              </div>
+              <%= form.submit 'Submit', class:"button is-info is-info " %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,24 +1,25 @@
-<div class="text-center  mx-auto mt-5">
-  <h1 class="font-one">Login</h1>
-  <div class="">
-    <%= form_with url: '/sessions' do |f| %>
-  <div class="">
-  <%= label_tag(:username, "Your Username:") %>
-  </div>
-    
-    <div class="m-3">
-    <%= f.text_field(:username, placeholder: 'Username') %>
+  <div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%= form_with(scope: :session, url: login_path, local: true) do |form| %>
+          <div class="danger has-text-danger">
+            <%= flash[:danger] %>
+          </div>
+
+          <div class="actions">
+            <div class="field">
+              <%= form.label :email, class:'label' %>
+              <div class="control mb-5">
+                <%= form.email_field :email, class:'input border border-info' %>
+              </div>
+
+        
+              <%= form.submit "Log In", class:'button is-info'%>
+            </div>
+          </div>
+        <% end %>
+        </div>
     </div>
-    
-   
-    <%= f.submit('Enter', :class => 'btn btn-success text-white fw-bold font-two border border-white m-3') %>
-  <% end %>
   </div>
-
 </div>
-
-
-
-
-
-

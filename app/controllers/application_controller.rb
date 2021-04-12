@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  def signed_in_only!
+    redirect_to login_path unless current_user
+  end
+
+  protect_from_forgery with: :exception
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: session[:user_id])
   end
-
-  def logged_in?
-    !current_user.nil?
-  end
-  
+  helper_method :current_user
 end
