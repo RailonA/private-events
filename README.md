@@ -6,7 +6,7 @@ A rails Members Only project
 ## Screenshot
 - ![screenshot](./app/assets/images/new_user.png)
 - ![screenshot](./app/assets/images/list_of_events.png)
-- ![screenshot](./app/assets/images/user.png)
+- ![screenshot](./app/assets/images/list_of_users.png)
 - ![screenshot](./app/assets/images/events_attended.png)
 
 
