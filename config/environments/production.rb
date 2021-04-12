@@ -1,6 +1,5 @@
 # rubocop:disable Style/GlobalStdStream
 # rubocop:disable Layout/EmptyLines
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
