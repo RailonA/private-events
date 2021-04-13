@@ -52,7 +52,6 @@ RSpec.describe 'Managing events:', type: :feature do
     expect(page).to have_content('Minneapolis')
     expect(page).to have_content('Mama are mere, Tata are pere')
   end
-
 end
 # rubocop:enable Lint/RedundantCopDisableDirective
 # rubocop:enable  Metrics/BlockLength
