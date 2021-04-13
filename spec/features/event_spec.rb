@@ -1,3 +1,5 @@
+# rubocop:disable Metrics/BlockLength
+
 require 'rails_helper'
 require 'capybara/rails'
 
@@ -83,3 +85,4 @@ RSpec.describe 'Managing events:', type: :feature do
     expect(page).to have_content('You can only attend once (Matrix! Perhaps!?)')
   end
 end
+# rubocop:enable Metrics/BlockLength
