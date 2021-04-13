@@ -17,7 +17,6 @@ RSpec.describe 'Managing events:', type: :feature do
     visit new_event_url
   end
 
-
   scenario 'create an event --> invalid inputs' do
     fill_in 'Title', with: ''
     click_button 'Submit'
@@ -53,8 +52,6 @@ RSpec.describe 'Managing events:', type: :feature do
     expect(page).to have_content('Minneapolis')
     expect(page).to have_content('Mama are mere, Tata are pere')
   end
-
-  
 
 end
 # rubocop:enable Lint/RedundantCopDisableDirective

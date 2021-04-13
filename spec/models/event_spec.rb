@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'capybara/rails'
+require 'spec_helper'
+
 
 RSpec.describe Event, type: :model do
   describe 'associations' do
