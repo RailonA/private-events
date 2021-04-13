@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 # rubocop:disable Lint/RedundantCopDisableDirective
 
 require 'rails_helper'
@@ -87,5 +86,4 @@ RSpec.describe 'Managing events:', type: :feature do
     expect(page).to have_content('You can only attend once (Matrix! Perhaps!?)')
   end
 end
-# rubocop:enable Metrics/BlockLength
 # rubocop:enable Lint/RedundantCopDisableDirective
