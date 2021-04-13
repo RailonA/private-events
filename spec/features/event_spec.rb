@@ -1,4 +1,5 @@
 # rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable  Metrics/BlockLength
 
 require 'rails_helper'
 require 'capybara/rails'
@@ -87,3 +88,4 @@ RSpec.describe 'Managing events:', type: :feature do
   end
 end
 # rubocop:enable Lint/RedundantCopDisableDirective
+# rubocop:enable  Metrics/BlockLength
