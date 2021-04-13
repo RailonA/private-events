@@ -15,6 +15,18 @@ feature 'The signup process:' do
       fill_in 'Email', with: 'railonacosta@gmail.com'
       click_on 'Submit'
     end
+
+
+    scenario 'redirects to home page after signup' do
+      visit(new_user_url)
+      fill_in 'Name', with: 'railon'
+      fill_in 'Email', with: 'railonacosta@gmail.com'
+      click_on 'Submit'
+      visit(users_url)
+      expect(page).to have_content 'User: railon Email: railonacosta@gmail.com'
+    end
+
+
   end
 end
 
