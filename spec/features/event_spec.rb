@@ -1,24 +1,26 @@
 # rubocop:disable Metrics/BlockLength
+# rubocop:disable Lint/RedundantCopDisableDirective
 
 require 'rails_helper'
 require 'capybara/rails'
+require 'spec_helper'
 
 RSpec.describe 'Managing events:', type: :feature do
   before(:each) do
     visit new_user_url
-    fill_in 'Name', with: 'testing'
-    fill_in 'Email', with: 'biscuits@gmail.com'
+    fill_in 'Name', with: ' railon'
+    fill_in 'Email', with: 'railonacosta@gmail.com'
     click_on ' Submit '
     visit login_url
-    fill_in 'Email', with: 'biscuits@gmail.com'
-    click_button ' Submit '
+    fill_in 'Email', with: 'railonacosta@gmail.com'
+    click_button ' Log In '
     visit new_event_url
   end
 
   scenario 'create an event --> valid inputs' do
     fill_in 'Title', with: 'Minneapolis'
     fill_in 'Description', with: 'Madonna is already gone, bye bye mama'
-    click_button ' Submit '
+    click_button 'Submit'
     visit root_path
     expect(page).to have_content('Minneapolis')
     expect(page).to have_content('Madonna is already gone, bye bye mama')
@@ -86,3 +88,4 @@ RSpec.describe 'Managing events:', type: :feature do
   end
 end
 # rubocop:enable Metrics/BlockLength
+# rubocop:enable Lint/RedundantCopDisableDirective

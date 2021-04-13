@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'capybara/rails'
+require 'spec_helper'
 
 feature 'The signup process:' do
   scenario 'has a new user page' do
@@ -10,17 +11,9 @@ feature 'The signup process:' do
   feature 'sign up a user' do
     before(:each) do
       visit new_user_url
-      fill_in 'Name', with: 'Railon'
+      fill_in 'Name', with: 'railon'
       fill_in 'Email', with: 'railonacosta@gmail.com'
       click_on 'Submit'
-    end
-
-    scenario 'redirects to home page after signup' do
-      expect(root_path).to have_content('Upcoming Events')
-    end
-
-    scenario 'shows username on the homepage after signup' do
-      expect(page).to have_content 'Railon'
     end
   end
 end
