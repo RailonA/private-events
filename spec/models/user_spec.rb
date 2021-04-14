@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'capybara/rails'
+require 'spec_helper'
 
 RSpec.describe User, type: :model do
   describe 'associations' do
