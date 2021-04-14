@@ -24,7 +24,6 @@ feature 'The signup process:' do
       visit(users_url)
       expect(page).to have_content 'User: railon Email: railonacosta@gmail.com'
     end
-
   end
 end
 
