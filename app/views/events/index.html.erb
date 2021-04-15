@@ -1,0 +1,40 @@
+  <div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <h1 class="title title-event is-4 navbar-item is-capitalized">Here is a list of our events.</h1>
+
+        <div class="event-tables tables">
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <span>Upcoming Events</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <%= render @upcoming_events %>
+            </tbody>
+        </table>
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>
+                  <span>Previous Events</span>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <%= render @prev_events %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

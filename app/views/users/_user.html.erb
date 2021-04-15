@@ -1,0 +1,15 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
+        <tr class="box box-radius">
+          <td class="column">Event: <%= link_to event.title, event %></td>
+          <td class="column"><div class="description">Description: <%= event.description %><div></td>
+          <td class="column">Date: <%= event.date.to_formatted_s(:long_ordinal)  %></td>
+          <td class="column">Creator: <%= event.creator.name %></td>
+          <td class="column"><%= delete(event) %></td>
+        </tr>
+      </div>
+    </div>
+  </div>
+</div>

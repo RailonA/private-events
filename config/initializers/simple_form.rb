@@ -1,3 +1,5 @@
+# rubocop:disable Layout/LineLength
+
 #
 # Uncomment this and change the path if necessary to include your own
 # components.
@@ -173,3 +175,4 @@ SimpleForm.setup do |config|
   # config.input_field_valid_class = 'is-valid'
   # config.input_field_error_class = 'is-invalid'
 end
+# rubocop:enable Layout/LineLength
